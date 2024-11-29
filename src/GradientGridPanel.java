@@ -88,12 +88,6 @@ public class GradientGridPanel extends JPanel
                 int value = myGrid[row][col];
                 int valueOneLess = value - 1;
 
-                // Get row and column position used to check adjacent cells
-                int[] position = getPositionInGrid(value);
-                int rowIndex = position[0];
-                int colIndex = position[1];
-
-
                 if (used[value]) {
                     System.out.println("Duplicate value found: " + value);
                     return false;
@@ -102,8 +96,8 @@ public class GradientGridPanel extends JPanel
                 }
 
                 // Loop through all neighboring cells
-                for (int rowToCheck = rowIndex -1; rowToCheck <= rowIndex +1; rowToCheck ++){
-                    for (int colToCheck = colIndex -1; colToCheck <= colIndex + 1; colToCheck ++){
+                for (int rowToCheck = row -1; rowToCheck <= row +1; rowToCheck ++){
+                    for (int colToCheck = col -1; colToCheck <= col + 1; colToCheck ++){
 
                         // Skip out-of-bounds neighbors
                         if (rowToCheck < 0 || rowToCheck >= GRID_SIZE || colToCheck < 0 || colToCheck >= GRID_SIZE) {
@@ -127,19 +121,6 @@ public class GradientGridPanel extends JPanel
             System.out.println();
         }
         return false;
-    }
-
-    // Helper function for confirming grid specifications
-    private int[] getPositionInGrid(int valueToFind) {
-        for (int row = 0; row < GRID_SIZE; row++) {
-            for (int col = 0; col < GRID_SIZE; col++) {
-                if (myGrid[row][col] == valueToFind) {
-                    System.out.println("Found value " + valueToFind + " at row " + row + " and column " + col);
-                    return new int[]{row, col};
-                }
-            }
-        }
-        return null;
     }
 
 
