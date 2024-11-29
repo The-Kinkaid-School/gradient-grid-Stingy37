@@ -79,11 +79,12 @@ public class GradientGridPanel extends JPanel
      */
     public boolean confirmGridMeetsSpecifications()
     {
-        // suggested variable to track whether you have duplicate numbers in the grid. This defaults to all falses.
+        // Variables to keep track of duplicity & adjacency requirements
         boolean[] used = new boolean[GRID_SIZE * GRID_SIZE];
+        boolean adjacencySatisfied = false;
 
         for (int row = 0; row < GRID_SIZE; row++){
-            for (int col = 0; col < GRID_SIZE; col++){
+            for (int col = 0; col < GRID_SIZE; col++) {
 
                 int value = myGrid[row][col];
                 int valueOneLess = value - 1;
@@ -95,9 +96,17 @@ public class GradientGridPanel extends JPanel
                     used[value] = true;
                 }
 
+                // Reset adjacency flag for each cell
+                adjacencySatisfied = false;
+
+                // Skip adjacency check for value 0
+                if (value == 0) {
+                    continue;
+                }
+
                 // Loop through all neighboring cells
-                for (int rowToCheck = row -1; rowToCheck <= row +1; rowToCheck ++){
-                    for (int colToCheck = col -1; colToCheck <= col + 1; colToCheck ++){
+                for (int rowToCheck = row - 1; rowToCheck <= row + 1; rowToCheck++) {
+                    for (int colToCheck = col - 1; colToCheck <= col + 1; colToCheck++) {
 
                         // Skip out-of-bounds neighbors
                         if (rowToCheck < 0 || rowToCheck >= GRID_SIZE || colToCheck < 0 || colToCheck >= GRID_SIZE) {
@@ -110,17 +119,26 @@ public class GradientGridPanel extends JPanel
                         }
 
                         // Check if the neighbor contains valueOneLess
-                        if (valueOneLess == myGrid[rowToCheck][colToCheck]){
-                            System.out.println("Adjacent value requirement met for" + value);
-                                return true;
+                        if (valueOneLess == myGrid[rowToCheck][colToCheck]) {
+                            adjacencySatisfied = true;
+                            break; // Exit column loop
                         }
+
                     }
+
+                    if (adjacencySatisfied) {
+                        break; // Exit row loop
+                    }
+                }
+                // If adjacency is not met for a cell, return false
+                if (!adjacencySatisfied) {
+                    System.out.println("Adjacency not met for " + value);
+                    return false;
                 }
             }
 
-            System.out.println();
         }
-        return false;
+        return true;
     }
 
 
