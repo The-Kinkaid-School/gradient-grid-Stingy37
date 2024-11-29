@@ -5,7 +5,7 @@ public class GradientGridPanel extends JPanel {
     private int[][] myGrid;
 
     final int GRID_SIZE = 16;
-    final int NUM_POSSIBLE_MODES = 5; // adjust this if you add to the list in the GradientGridFrame.
+    final int NUM_POSSIBLE_MODES = 6; // adjust this if you add to the list in the GradientGridFrame.
 
 
     private int mode; // which coloring scheme are we using?
@@ -153,14 +153,14 @@ public class GradientGridPanel extends JPanel {
                 makeAnotherBadExample();
                 break;
             case 3:
-
-                // TODO write code for case 2, either here or in its own method.
-                // Spiral
+                makeVerticalSnakeExample();
                 break;
             case 4:
-                makeSnakeExample();
+                makeHorizontalSnakeExample();
                 break;
-            // you may add more cases, if you wish!
+            case 5:
+                makeSpiralExample();
+                break;
         }
     }
 
@@ -201,10 +201,10 @@ public class GradientGridPanel extends JPanel {
     }
 
     /**
-     * a simple snake pattern which meets the criteria. Checks if current row is even/odd, and depending on that,
+     * a simple horizontal snake pattern which meets the criteria. Checks if current row is even/odd, and depending on that,
      * alternate between filling in columns left to right or right to left.
      */
-    private void makeSnakeExample() {
+    private void makeHorizontalSnakeExample() {
         int counter = 0;
 
         for (int row = 0; row < GRID_SIZE; row++) {
@@ -219,9 +219,35 @@ public class GradientGridPanel extends JPanel {
                     counter++;
                 }
             }
-
-
         }
     }
+
+    /**
+     * a simple vertical snake pattern which meets the criteria. Checks if current column is even/odd, and depending on that,
+     * alternate between filling in rows top to bottom or bottom to top.
+     */
+    private void makeVerticalSnakeExample() {
+        int counter = 0;
+
+        for (int col = 0; col < GRID_SIZE; col++) {
+            if (col % 2 == 0) { // Even columns: top to bottom
+                for (int row = 0; row < GRID_SIZE; row++) {
+                    myGrid[row][col] = counter;
+                    counter++;
+                }
+            } else {
+                for (int row = GRID_SIZE - 1; row >= 0; row--) {
+                    myGrid[row][col] = counter;
+                    counter++;
+                }
+            }
+        }
+    }
+
+    private void makeSpiralExample(){
+
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }
 

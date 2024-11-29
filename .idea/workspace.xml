@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a23e66c-010e-40e6-b64b-1f45d21b353d" name="Changes" comment="Fixed logic pertaining to confirmGridMeetsSpecifications, specifically when to break out of the loop checking adjacency for neighboring cells. If adjacency is met, no need to continue (break out of both row + col loops), and if not met, whole function should return false.">
+    <list default="true" id="4a23e66c-010e-40e6-b64b-1f45d21b353d" name="Changes" comment="Added another good case (essentially a snake pattern). Checks if current row is even/odd, and depending on that, alternate between filling in columns left -&gt; right or right -&gt; left.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GradientGridFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradientGridFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GradientGridPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradientGridPanel.java" afterDir="false" />
@@ -105,13 +105,22 @@
       <option name="project" value="LOCAL" />
       <updated>1732849074822</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added another good case (essentially a snake pattern). Checks if current row is even/odd, and depending on that, alternate between filling in columns left -&gt; right or right -&gt; left.">
+      <option name="closed" value="true" />
+      <created>1732855273807</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732855273807</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Wrote bulk of confirmGridMeetsSpecifications &amp; helper function for getting row and col positions." />
     <MESSAGE value="Removed redundant code - turns out did not NEED helper function to get row &amp; col of value b/c that is already in the for loop.....too overcomplicated" />
     <MESSAGE value="Fixed logic pertaining to confirmGridMeetsSpecifications, specifically when to break out of the loop checking adjacency for neighboring cells. If adjacency is met, no need to continue (break out of both row + col loops), and if not met, whole function should return false." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed logic pertaining to confirmGridMeetsSpecifications, specifically when to break out of the loop checking adjacency for neighboring cells. If adjacency is met, no need to continue (break out of both row + col loops), and if not met, whole function should return false." />
+    <MESSAGE value="Added another good case (essentially a snake pattern). Checks if current row is even/odd, and depending on that, alternate between filling in columns left -&gt; right or right -&gt; left." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added another good case (essentially a snake pattern). Checks if current row is even/odd, and depending on that, alternate between filling in columns left -&gt; right or right -&gt; left." />
   </component>
 </project>
