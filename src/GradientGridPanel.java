@@ -82,9 +82,66 @@ public class GradientGridPanel extends JPanel
         // suggested variable to track whether you have duplicate numbers in the grid. This defaults to all falses.
         boolean[] used = new boolean[GRID_SIZE * GRID_SIZE];
 
-        //TODO: you write this method.
+        for (int row = 0; row < GRID_SIZE; row++){
+            for (int col = 0; col < GRID_SIZE; col++){
+
+                int value = myGrid[row][col];
+                int valueOneLess = value - 1;
+
+                // Get row and column position used to check adjacent cells
+                int[] position = getPositionInGrid(value);
+                int rowIndex = position[0];
+                int colIndex = position[1];
+
+
+                if (used[value]) {
+                    System.out.println("Duplicate value found: " + value);
+                    return false;
+                } else {
+                    used[value] = true;
+                }
+
+                // Loop through all neighboring cells
+                for (int rowToCheck = rowIndex -1; rowToCheck <= rowIndex +1; rowToCheck ++){
+                    for (int colToCheck = colIndex -1; colToCheck <= colIndex + 1; colToCheck ++){
+
+                        // Skip out-of-bounds neighbors
+                        if (rowToCheck < 0 || rowToCheck >= GRID_SIZE || colToCheck < 0 || colToCheck >= GRID_SIZE) {
+                            continue;
+                        }
+
+                        // Skip the cell itself
+                        if (rowToCheck == row && colToCheck == col) {
+                            continue;
+                        }
+
+                        // Check if the neighbor contains valueOneLess
+                        if (valueOneLess == myGrid[rowToCheck][colToCheck]){
+                            System.out.println("Adjacent value requirement met for" + value);
+                                return true;
+                        }
+                    }
+                }
+            }
+
+            System.out.println();
+        }
         return false;
     }
+
+    // Helper function for confirming grid specifications
+    private int[] getPositionInGrid(int valueToFind) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                if (myGrid[row][col] == valueToFind) {
+                    System.out.println("Found value " + valueToFind + " at row " + row + " and column " + col);
+                    return new int[]{row, col};
+                }
+            }
+        }
+        return null;
+    }
+
 
     /**
      * based on which mode is active, update the values stored in myGrid.
@@ -128,6 +185,7 @@ public class GradientGridPanel extends JPanel
             }
         }
     }
+
 
     /**
      * another example of a grid that shouldn't meet the grade... this one has the continuity (sort of), but it has a lot
